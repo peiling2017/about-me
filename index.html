@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peiling Qu - Portfolio</title>
+    <style>
+        :root { 
+            --primary: #2c5282; 
+            --secondary: #4a7bac; 
+            --accent: #63b3ed;
+            --dark: #1a365d; 
+            --light: #f7fafc;
+            --text: #2d3748;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text);
+            background: var(--light);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        
+        
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 2rem; 
+        }
+        
+        .section { 
+            padding: 80px 0; 
+        }
+        
+        .section-title { 
+            text-align: center; 
+            margin-bottom: 3rem; 
+        }
+        
+        .section-title h2 { 
+            font-size: 2.5rem; 
+            color: var(--primary); 
+            margin-bottom: 1rem; 
+        }
+        
+        .section-title p { 
+            color: #64748b; 
+            font-size: 1.1rem; 
+        }
+        
+        
+        .glass-effect {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+    
+        .navbar { 
+            background: rgba(247, 250, 252, 0.95); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 2rem; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1); 
+            position: fixed; 
+            width: 100%; 
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: var(--dark); 
+            text-decoration: none; 
+            position: relative;
+        }
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+        .logo:hover::after {
+            width: 100%;
+        }
+        .nav-links { 
+            display: flex; 
+            gap: 2rem; 
+            list-style: none; 
+        }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 500; 
+            transition: all 0.3s; 
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover { color: var(--primary); }
+    
+        .hero { 
+            background: linear-gradient(135deg, #2c5282 0%, #4a7bac 50%, #63b3ed 100%); 
+            color: white; 
+            padding: 140px 2rem 80px; 
+            text-align: center; 
+            margin-top: 60px; 
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(99, 179, 237, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 123, 172, 0.1) 0%, transparent 50%);
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 1rem; 
+            position: relative; 
+            font-weight: 600;
+        }
+        .hero p { 
+            font-size: 1.2rem; 
+            max-width: 600px; 
+            margin: 0 auto 2rem; 
+            opacity: 0.9; 
+            position: relative; 
+            font-weight: 300;
+        }
+        
+       
+        .btn { 
+            display: inline-block; 
+            padding: 12px 30px; 
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            transition: all 0.3s; 
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 
+                0 8px 25px rgba(44, 82, 130, 0.3),
+                0 0 0 1px rgba(255,255,255,0.1) inset;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            position: relative;
+        }
+        .btn-outline::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-outline:hover::after {
+            opacity: 1;
+        }
+        .btn-outline:hover {
+            background: transparent;
+            color: white;
+            border-color: transparent;
+        }
+        
+    
+        .tech-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        
+        .tech-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        
+        .tech-card:hover::after {
+            opacity: 1;
+            transform: rotate(45deg) translate(10%, 10%);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(255,255,255,0.2) inset,
+                0 0 30px rgba(44, 82, 130, 0.1);
+            border-color: rgba(44, 82, 130, 0.3);
+        }
+        
+       
+        .timeline { 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        
+        .timeline-item {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .timeline-item:hover::before {
+            opacity: 1;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(255,255,255,0.1) inset;
+            border-color: rgba(44, 82, 130, 0.2);
+        }
+        
+        .timeline-date { 
+            color: var(--primary); 
+            font-weight: 600; 
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-company { 
+            color: #64748b; 
+            font-weight: 500; 
+            margin-bottom: 1rem; 
+        }
+        
+        .timeline-description { 
+            color: #64748b; 
+            line-height: 1.7; 
+        }
+        
+     
+        .travel-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .travel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(255,255,255,0.1) inset;
+        }
+        
+  
+        .tech-tags { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 0.5rem; 
+            margin-bottom: 1.5rem; 
+        }
+        
+        .tech-tag { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; 
+            padding: 0.4rem 0.8rem; 
+            border-radius: 20px; 
+            font-size: 0.875rem; 
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .tech-tag:hover::before {
+            left: 100%;
+        }
+        
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);
+        }
+        
+ 
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 120px 1rem 60px; }
+            .container { padding: 0 1rem; }
+            
+            .scanlines {
+                background-size: 100% 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+  
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Peiling Qu</a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#global-tour">Global Tour</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+   
+    <section class="hero">
+        <div class="container">
+            <h1>Hi, I'm Peiling Qu</h1>
+            <p>Technology Consultant & Data Analyst passionate about transforming data into actionable insights and building innovative solutions</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+   
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+                <p>Data-driven solutions and analytical applications</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <!-- Project 1 -->
+                <div class="tech-card" style="height: fit-content;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Automated Stock Analysis & Forecasting</h3>
+                    <div style="color: #64748b; font-weight: 500; margin-bottom: 1rem;">Machine Learning & Financial Analytics</div>
+                    <p style="color: #64748b; line-height: 1.7;">
+                        Developed a systematic approach to analyze stock data and predict price movements using machine learning and interactive dashboards.
+                        <br><br>
+                        <strong>Backend</strong><br>
+                        • Built data pipeline using Python (yfinance, pandas)<br>
+                        • Implemented feature engineering for technical indicators (RSI, MACD, moving averages)<br>
+                        • Developed machine learning models (Logistic Regression, Random Forest) for price direction prediction
+                        <br><br>
+                        <strong>Visualization</strong><br>
+                        • Created interactive Tableau dashboard<br>
+                        • Implemented alerts for price and volume anomalies<br>
+                        • Designed predictive analytics view showing model forecasts<br>
+                        • Developed feature importance charts for model interpretation
+                        <br><br>
+                        <strong>Technical Stack:</strong> Python (pandas, scikit-learn, yfinance), Tableau
+                    </p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="tech-card" style="height: fit-content;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">NLP-Driven Sentiment Analysis of Social Media Buzz</h3>
+                    <div style="color: #64748b; font-weight: 500; margin-bottom: 1rem;">Natural Language Processing & Social Media Analytics</div>
+                    <p style="color: #64748b; line-height: 1.7;">
+                        Analyzed public sentiment on Twitter by collecting data, classifying opinions with a BERT model, and identifying key discussion topics.
+                        <br><br>
+                        <strong>Data Collection & Processing</strong><br>
+                        • Programmatically harvested Twitter data using R (rtweet) via Twitter API v2<br>
+                        • Built text cleaning pipeline with Python (NLTK) for tokenization and lemmatization<br>
+                        • Implemented TF-IDF analysis to extract and rank predictive keywords
+                        <br><br>
+                        <strong>Machine Learning Implementation</strong><br>
+                        • Fine-tuned BERT model (Hugging Face) for sentiment classification<br>
+                        • Developed multi-class classifier with probabilistic sentiment scoring<br>
+                        • Categorized tweets into positive, negative, and neutral sentiment
+                        <br><br>
+                        <strong>Analysis & Visualization</strong><br>
+                        • Generated sentiment distribution charts using Matplotlib<br>
+                        • Created comparative word clouds for visual analysis<br>
+                        • Produced analytical reports with actionable insights
+                        <br><br>
+                        <strong>Technical Stack:</strong> R (rtweet), Python (NLTK, Transformers), BERT, TF-IDF, Matplotlib, Twitter API v2
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="experience" class="section" style="background: #f7fafc;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+                <p>Professional journey in technology consulting and data analytics</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023/01 - 2023/08</div>
+                    <h3>Technology Consultant</h3>
+                    <div class="timeline-company">Ernst & Young · Financial Service Organization, Data & Analytics Team</div>
+                    <p class="timeline-description">
+                        • New Treasury Trading Platform Development: Supported testing phase for an Irish major bank by coordinating sync ups with stakeholders and vendors. Acted as key liaison to manage change requests, ensuring adherence to project timelines.<br><br>
+                        • HR Database & Metrics Redesign: Built HR database and ETL pipelines using SQL to establish trusted reporting. Redesigned key metrics and launched Power BI dashboard, providing leadership with strategic workforce insights.<br><br>
+                        • Automation Process Roadmap: Spearheaded initial automation roadmap by analyzing inefficient tax processes. Translated business needs into technical specifications for RPA solutions.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <h3>Solution Delivery Intern</h3>
+                    <div class="timeline-company">Version 1</div>
+                    <p class="timeline-description">
+                        • Drove strategic insights on Digital Twin adoption by conducting 40+ expert interviews across manufacturing, automotive, and pharmaceutical sectors.<br><br>
+                        • Synthesized research findings into client-ready implementation framework with actionable recommendations to accelerate adoption of data-intensive solutions.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <h3>Operations Analyst Summer Intern</h3>
+                    <div class="timeline-company">JD.com · Treasury Trading Platform, Customer Service Department</div>
+                    <p class="timeline-description">
+                        • Developed real-time Power BI dashboard tracking key operational KPIs for 2,000+ agents, enabling data-driven performance management.<br><br>
+                        • Supported implementation of intelligent response system by conducting user training and analyzing feedback. Refined SOPs to enhance data integrity and accelerate reporting workflows.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 教育背景 -->
+<section id="education" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Education</h2>
+            <p>Academic background and qualifications</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2022 - 2023</div>
+                <h3>Master of Information Systems for Business Performance</h3>
+                <div class="timeline-company">University College Cork, Ireland</div>
+                <p class="timeline-description">
+                    <strong>Core Modules:</strong><br>
+                    • Database Analysis and Design<br>
+                    • IT Sourcing & Governance<br>
+                    • Application Design & Business Analysis<br>
+                    • Database for Management Information Systems
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2017 - 2021</div>
+                <h3>Bachelor of Investment</h3>
+                <div class="timeline-company">Southwest University of Nationalities, China</div>
+                <p class="timeline-description">
+                    <strong>Core Modules:</strong><br>
+                    • Quantitative Analysis & Risk Management<br>
+                    • Data Mining Technology (R, Python, ArcGIS)<br>
+                    • Project Evaluation and Management<br>
+                    • Financial Investment Analysis
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Global Tour -->
+<section id="global-tour" class="section" style="background: #f7fafc;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Global Adventures</h2>
+            <p>Cultural immersion through work exchange and travel across three continents</p>
+        </div>
+        
+        <div class="cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+            <!-- Iceland Card -->
+            <div class="travel-card">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">Iceland: Fish Farm Exchange</h3>
+                <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">2-week work exchange on a remote Westfjords fjord farm</div>
+                
+                <!-- Image Slider -->
+                <div class="image-slider">
+                    <div class="slider-container" style="height: 180px; border-radius: 8px; overflow: hidden; position: relative;">
+                        <div class="slide active">
+                            <img src="https://raw.githubusercontent.com/peiling2017/about-me/main/images/ic1.jpeg" alt="Iceland fish farm work" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/peiling2017/about-me/main/images/ic2.jpeg" alt="Iceland coastal landscape" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                    </div>
+                    <div class="slider-controls" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem;">
+                        <button class="slider-btn prev" style="background: #64748b; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;">‹</button>
+                        <div class="slider-dots" style="display: flex; gap: 0.3rem;">
+                            <span class="dot active" style="width: 6px; height: 6px; border-radius: 50%; background: var(--primary); cursor: pointer;"></span>
+                            <span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #cbd5e1; cursor: pointer;"></span>
+                        </div>
+                        <button class="slider-btn next" style="background: #64748b; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;">›</button>
+                    </div>
+                </div>
+                
+                <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-top: 1rem;">
+                    Worked on a remote Westfjords fish farm feeding fish, maintaining tanks, and assisting with aquaculture operations. Also welcomed guests on whale-watching tours, experiencing Iceland's coastal culture firsthand.
+                </p>
+            </div>
+
+            <!-- Japan Card -->
+            <div class="travel-card">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">Japan: Hostel Work Exchange</h3>
+                <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">3-week hostel work exchange in historic Kamakura</div>
+                
+                <!-- Image Slider -->
+                <div class="image-slider">
+                    <div class="slider-container" style="height: 180px; border-radius: 8px; overflow: hidden; position: relative;">
+                        <div class="slide active">
+                            <img src="https://raw.githubusercontent.com/peiling2017/about-me/main/images/jp1.jpeg" alt="Kamakura hostel and surroundings" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/peiling2017/about-me/main/images/jp2.jpeg" alt="Life in Kamakura, Japan" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                    </div>
+                    <div class="slider-controls" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem;">
+                        <button class="slider-btn prev" style="background: #64748b; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;">‹</button>
+                        <div class="slider-dots" style="display: flex; gap: 0.3rem;">
+                            <span class="dot active" style="width: 6px; height: 6px; border-radius: 50%; background: var(--primary); cursor: pointer;"></span>
+                            <span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #cbd5e1; cursor: pointer;"></span>
+                        </div>
+                        <button class="slider-btn next" style="background: #64748b; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;">›</button>
+                    </div>
+                </div>
+                
+                <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-top: 1rem;">
+                    Worked at a Kamakura international hostel handling guest check-ins, luggage, and local guidance. Learned about Japanese hospitality while interacting with travelers from around the world.
+                </p>
+            </div>
+
+            <!-- UK Card -->
+            <div class="travel-card">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem;">UK: Coastal Farm Exchange</h3>
+                <div style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">Farm exchange in North Devon's historic harbour town</div>
+                
+                <!-- Image Slider -->
+                <div class="image-slider">
+                    <div class="slider-container" style="height: 180px; border-radius: 8px; overflow: hidden; position: relative;">
+                        <div class="slide active">
+                            <img src="https://raw.githubusercontent.com/peiling2017/about-me/main/images/uk1.jpeg" alt="UK coastal farm landscape" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div class="slide">
+                            <img src="https://raw.githubusercontent.com/peiling2017/about-me/main/images/uk2.jpeg" alt="Life on a UK farm in Ilfracombe" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                    </div>
+                    <div class="slider-controls" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem;">
+                        <button class="slider-btn prev" style="background: #64748b; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;">‹</button>
+                        <div class="slider-dots" style="display: flex; gap: 0.3rem;">
+                            <span class="dot active" style="width: 6px; height: 6px; border-radius: 50%; background: var(--primary); cursor: pointer;"></span>
+                            <span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: #cbd5e1; cursor: pointer;"></span>
+                        </div>
+                        <button class="slider-btn next" style="background: #64748b; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; font-size: 0.8rem;">›</button>
+                    </div>
+                </div>
+                
+                <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-top: 1rem;">
+                    Living on the dramatic North Devon coast, I participated in traditional British farm life through hands-on work: feeding young livestock, harvesting grapes and apples for homemade products, and maintaining daily farm operations. Learned sustainable food production methods while experiencing coastal community living through shared meals and communal work.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for opportunities</p>
+            </div>
+            <div style="text-align: center;">
+                <a href="mailto:PeilingQu@outlook.com" class="btn">Contact Me</a>
+                <a href="https://www.linkedin.com/in/impeiling/" class="btn btn-outline" style="margin-left: 1rem;">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer style="background: var(--primary); color: white; text-align: center; padding: 3rem 2rem; margin-top: 2rem;">
+        <div class="container">
+            <p>&copy; 2025 Peiling Qu. </p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">Email: PeilingQu@outlook.com | LinkedIn: https://www.linkedin.com/in/impeiling/</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all sliders
+            document.querySelectorAll('.image-slider').forEach(slider => {
+                const container = slider.querySelector('.slider-container');
+                const slides = slider.querySelectorAll('.slide');
+                const dots = slider.querySelectorAll('.dot');
+                const prevBtn = slider.querySelector('.prev');
+                const nextBtn = slider.querySelector('.next');
+                
+                let currentSlide = 0;
+                
+                function showSlide(index) {
+                    // Hide all slides
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    
+                    // Show current slide
+                    slides[index].classList.add('active');
+                    dots[index].classList.add('active');
+                    
+                    currentSlide = index;
+                }
+                
+                // Next slide
+                nextBtn.addEventListener('click', () => {
+                    let next = currentSlide + 1;
+                    if (next >= slides.length) next = 0;
+                    showSlide(next);
+                });
+                
+                // Previous slide
+                prevBtn.addEventListener('click', () => {
+                    let prev = currentSlide - 1;
+                    if (prev < 0) prev = slides.length - 1;
+                    showSlide(prev);
+                });
+                
+                // Dot navigation
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        showSlide(index);
+                    });
+                });
+                
+                // Auto-advance slides every 5 seconds
+                setInterval(() => {
+                    let next = currentSlide + 1;
+                    if (next >= slides.length) next = 0;
+                    showSlide(next);
+                }, 5000);
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
